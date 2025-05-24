@@ -22,11 +22,11 @@ If you're starting a new project based on this admin dashboard, it is recommende
 
 This project includes various images stored in the `assets/images/` directory. Below are the images and their respective paths:
 
-- **Desktop Images:**
+<!-- - **Desktop Images:**
   - ![Mobile Image 1](assets/images/desktop.png)
 
 - **Mobile Images:**
   <div style="display: flex; justify-content: space-around;">
   <img src="assets/images/mobile1.png" alt="Mobile Image 1" width="200"/>
   <img src="assets/images/mobile2.png" alt="Mobile Image 2" width="200"/>
-  </div>
+  </div> -->
