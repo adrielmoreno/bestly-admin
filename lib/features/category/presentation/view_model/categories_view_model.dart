@@ -8,9 +8,15 @@ class CategoriesViewModel extends ChangeNotifier {
   CategoriesViewModel(this._categoriesRepository);
 
   List<CategoryResponse> categories = [];
+  bool isLoading = false;
 
   Future<void> getCategories() async {
+    isLoading = true;
+    notifyListeners();
+
     categories = await _categoriesRepository.getAll();
+
+    isLoading = false;
     notifyListeners();
   }
 

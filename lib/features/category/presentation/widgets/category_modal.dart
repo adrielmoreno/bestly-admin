@@ -33,6 +33,9 @@ class _CategoryModalState extends State<CategoryModal> {
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
         expand: true,
+        initialChildSize: 1,
+        minChildSize: 1,
+        maxChildSize: 1,
         builder: (context, controller) {
           return Container(
             padding: const EdgeInsets.all(AppDimens.semiBig),
@@ -45,9 +48,11 @@ class _CategoryModalState extends State<CategoryModal> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        widget.category?.name ?? 'Nueva categoría',
-                        style: CustomLabels.h1.copyWith(color: Colors.white),
+                      Expanded(
+                        child: Text(
+                          widget.category?.name ?? 'Nueva categoría',
+                          style: CustomLabels.h1.copyWith(color: Colors.white),
+                        ),
                       ),
                       IconButton(
                         onPressed: () => Navigator.of(context).pop(),
@@ -78,17 +83,21 @@ class _CategoryModalState extends State<CategoryModal> {
                     margin: const EdgeInsets.only(top: AppDimens.semiBig),
                     alignment: Alignment.center,
                     child: CustomOutlinedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (id == null && name != null) {
-                          _categoryViewModel.newCategory(name!);
+                          await _categoryViewModel.newCategory(name!);
+                          // ignore: use_build_context_synchronously
                           context.showSnackBar('!$name cread@');
                         } else if (widget.category != null) {
                           final category = widget.category
                               ?.copyWith(name: name, updatedAt: DateTime.now());
 
-                          _categoryViewModel.updateCategory(category!);
+                          await _categoryViewModel.updateCategory(category!);
+                          // ignore: use_build_context_synchronously
                           context.showSnackBarError('!$name actualizad@');
                         }
+
+                        // ignore: use_build_context_synchronously
                         Navigator.of(context).pop();
                       },
                       text: id != null ? 'Editar' : 'Guardar',

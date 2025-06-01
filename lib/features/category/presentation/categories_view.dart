@@ -33,7 +33,7 @@ class _CategoriesViewState extends State<CategoriesView> {
 
   @override
   Widget build(BuildContext context) {
-    if (_categoriesVewModel.categories.isEmpty) {
+    if (_categoriesVewModel.isLoading) {
       return const Center(
         child: CircularProgressIndicator(
           color: Colors.blue,
